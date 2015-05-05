@@ -26,6 +26,7 @@ class BilleteraElectronica:
     
     def consumir(self, monto, fecha, idEstablecimiento):
         self.debitos.append((monto, fecha, idEstablecimiento))
+        self.monto = self.monto - monto
 
 if __name__ == '__main__':
     pass

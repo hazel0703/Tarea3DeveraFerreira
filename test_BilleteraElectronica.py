@@ -19,7 +19,7 @@ class Test(unittest.TestCase):
     def testMetodRecargar(self):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
         Fecha_recarga = datetime(2015, 4, 21, 6, 15)
-        BE.recargar(100, Fecha_recarga, id)
+        BE.recargar(100, Fecha_recarga, "id")
         
     #Caso para probar que existe el metodo saldo
     def testMetodSaldo(self):
@@ -30,14 +30,25 @@ class Test(unittest.TestCase):
     def testRecargarsaldo(self):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
         Fecha_recarga = datetime(2015, 5, 5, 6, 15)
-        BE.recargar(100, Fecha_recarga, id)
+        BE.recargar(100, Fecha_recarga, "id")
         self.assertEqual(BE.saldo(), 100, "El saldo no es el correcto")
     
     #Caso para probar si el metodo consumir existe    
     def testMetodconsumir(self):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
         Fecha_consumir = datetime(2015, 5, 5, 6, 15)
-        BE.consumir(100, Fecha_consumir, id)
+        BE.consumir(100, Fecha_consumir, "id")
+     
+    #Caso para probar si el metodo consumir realmente consume el saldo
+    def testConsumirSaldo(self):
+        BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        Fecha_recarga = datetime(2015, 5, 5, 6, 15)
+        BE.recargar(100, Fecha_recarga, "id")
+        Fecha_consumir = datetime(2015, 5, 7, 6, 15)
+        BE.consumir(50, Fecha_consumir, "id")
+        self.assertEqual(BE.saldo(), 50, "El saldo no es el correcto")
+        
+        
         
 
 
