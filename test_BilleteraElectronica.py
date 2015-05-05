@@ -37,7 +37,7 @@ class Test(unittest.TestCase):
     def testMetodconsumir(self):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
         Fecha_consumir = datetime(2015, 5, 5, 6, 15)
-        BE.consumir(100, Fecha_consumir, "id")
+        BE.consumir(100, Fecha_consumir, "id", 321)
      
     #Caso para probar si el metodo consumir realmente consume el saldo
     def testConsumirSaldo(self):
@@ -45,10 +45,17 @@ class Test(unittest.TestCase):
         Fecha_recarga = datetime(2015, 5, 5, 6, 15)
         BE.recargar(100, Fecha_recarga, "id")
         Fecha_consumir = datetime(2015, 5, 7, 6, 15)
-        BE.consumir(50, Fecha_consumir, "id")
+        BE.consumir(50, Fecha_consumir, "id", 4321)
         self.assertEqual(BE.saldo(), 50, "El saldo no es el correcto")
         
-        
+    #Caso para probar que al consumir el pin sea el mismo de la billetera
+    def testVerificacionPIN(self):
+        BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        Fecha_recarga = datetime(2015, 5, 5, 6, 15)
+        BE.recargar(100, Fecha_recarga, "id")
+        Fecha_consumir = datetime(2015, 5, 7, 6, 15)
+        BE.consumir(50, Fecha_consumir, "id", 4321)
+        self.assertEqual(BE.PIN, 4321, "PIN diferente al esperado")
         
 
 
