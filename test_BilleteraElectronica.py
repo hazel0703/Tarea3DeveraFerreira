@@ -32,7 +32,8 @@ class Test(unittest.TestCase):
         Fecha_recarga = datetime(2015, 5, 5, 6, 15)
         BE.recargar(100, Fecha_recarga, id)
         self.assertEqual(BE.saldo(), 100, "El saldo no es el correcto")
-        
+    
+    #Caso para probar si el metodo consumir existe    
     def testMetodconsumir(self):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
         Fecha_consumir = datetime(2015, 5, 5, 6, 15)

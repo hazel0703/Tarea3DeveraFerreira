@@ -6,15 +6,15 @@ Created on 5/5/2015
 '''
 
 class BilleteraElectronica:
-    def __init__(self, ID, Nombres, Apellidos, CI, PIN, creditos = [], monto = 0, debitos = []):
+    def __init__(self, ID, Nombres, Apellidos, CI, PIN):
         self.ID = ID
         self.Nombres = Nombres
         self.Apellidos = Apellidos
         self.CI = CI
         self.PIN = PIN
-        self.creditos = creditos
-        self.monto = monto
-        self.debitos = debitos
+        self.creditos = []
+        self.monto = 0
+        self.debitos = []
         
         
     def recargar(self,monto,fecha,idEstablecimiento):
