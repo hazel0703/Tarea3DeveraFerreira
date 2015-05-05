@@ -20,6 +20,11 @@ class Test(unittest.TestCase):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
         Fecha_recarga = datetime(2015, 4, 21, 6, 15)
         BE.recargar(100, Fecha_recarga, id)
+        
+    #Caso para probar que existe el metodo saldo
+    def testMetodSaldo(self):
+        BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        BE.saldo()
 
 
 if __name__ == "__main__":
