@@ -16,6 +16,7 @@ class BilleteraElectronica:
         self.monto = 0
         
     def recargar(self,monto,fecha,idEstablecimiento):
+        self.monto = self.monto + monto
         self.creditos.append((monto,fecha,idEstablecimiento))
         
     def saldo(self):
