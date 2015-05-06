@@ -1,12 +1,15 @@
 '''
 Created on 5/5/2015
 
-@author: Usuario
+@author: Adriana Devera  09-11286
+         Carlos Ferreira 11-10323
 '''
+
+# -*- coding: utf-8 -*-
+
 import unittest
 from BilleteraElectronica import *
 from datetime import datetime 
-
 
 class Test(unittest.TestCase):
 
@@ -85,6 +88,10 @@ class Test(unittest.TestCase):
         Fecha_consumir = datetime(2015, 5, 5, 6, 15)
         self.assertRaises(Exception, BE.consumir, -1, Fecha_consumir, "id")
         
+    #Caso para probar los caracteres especiales en el nombre y apellido
+    def testCaracteresEspeciales(self):
+        BE = BilleteraElectronica(5, "-áéíóúñ", "-áéíóúñ", 12345678, 4321)
+         
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

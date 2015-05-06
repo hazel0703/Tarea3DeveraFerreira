@@ -5,6 +5,8 @@ Created on 5/5/2015
          Carlos Ferreira 11-10323
 '''
 
+# -*- coding: utf-8 -*-
+
 class BilleteraElectronica:
     def __init__(self, ID, Nombres, Apellidos, CI, PIN):
         self.ID = ID
