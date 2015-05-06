@@ -18,6 +18,8 @@ class BilleteraElectronica:
         
         
     def recargar(self,monto,fecha,idEstablecimiento):
+        if monto <= 0:
+            raise Exception("Monto de la recarga no puede ser negativo")
         self.monto = self.monto + monto
         self.creditos.append((monto,fecha,idEstablecimiento))
         

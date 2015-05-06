@@ -73,6 +73,11 @@ class Test(unittest.TestCase):
         Fecha_consumir = datetime(2015, 5, 7, 6, 15)
         self.assertRaises(Exception, BE.consumir ,50 , Fecha_consumir, "id", 4321)
         
+    def testRecargaNegativa(self):
+        BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        Fecha_recarga = datetime(2015, 5, 5, 6, 15)
+        self.assertRaises(Exception, BE.recargar, -1, Fecha_recarga, "id")
+        
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
