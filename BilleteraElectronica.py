@@ -20,20 +20,22 @@ class BilleteraElectronica:
     def recargar(self,monto,fecha,idEstablecimiento):
         if monto <= 0:
             raise Exception("Monto de la recarga no puede ser negativo")
-        self.monto = self.monto + monto
+        self.monto += monto
         self.creditos.append((monto,fecha,idEstablecimiento))
         
     def saldo(self):
         return self.monto
     
     def consumir(self, monto, fecha, idEstablecimiento, PIN):
+        if monto <= 0:
+            raise Exception("Monto del consumo no puede ser negativo")
         if self.PIN != PIN:
             raise Exception("PIN incorrecto")
         elif self.monto - monto < 0:
             raise Exception("Insuficiente creditos para la realizacion de la operacion")
             
         self.debitos.append((monto, fecha, idEstablecimiento))
-        self.monto = self.monto - monto
+        self.monto -= monto
        
             
 
