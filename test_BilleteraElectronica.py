@@ -36,6 +36,8 @@ class Test(unittest.TestCase):
     #Caso para probar si el metodo consumir existe    
     def testMetodconsumir(self):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        Fecha_recarga = datetime(2015, 5, 5, 6, 15)
+        BE.recargar(100, Fecha_recarga, "id")
         Fecha_consumir = datetime(2015, 5, 5, 6, 15)
         BE.consumir(100, Fecha_consumir, "id", 4321)
      
@@ -64,7 +66,13 @@ class Test(unittest.TestCase):
         BE.recargar(100, Fecha_recarga, "id")
         Fecha_consumir = datetime(2015, 5, 7, 6, 15)
         self.assertRaises(Exception, BE.consumir ,50 , Fecha_consumir, "id", 321)
-
+        
+    #Caso para probar el caso en que al hacer un retiro el saldo quede negativo
+    def testSaldoNegativo(self):
+        BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        Fecha_consumir = datetime(2015, 5, 7, 6, 15)
+        self.assertRaises(Exception, BE.consumir ,50 , Fecha_consumir, "id", 4321)
+        
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

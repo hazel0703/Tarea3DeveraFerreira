@@ -27,6 +27,8 @@ class BilleteraElectronica:
     def consumir(self, monto, fecha, idEstablecimiento, PIN):
         if self.PIN != PIN:
             raise Exception("PIN incorrecto")
+        elif self.monto - monto < 0:
+            raise Exception("Insuficiente creditos para la realizacion de la operacion")
             
         self.debitos.append((monto, fecha, idEstablecimiento))
         self.monto = self.monto - monto
