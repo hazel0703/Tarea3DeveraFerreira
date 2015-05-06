@@ -25,9 +25,13 @@ class BilleteraElectronica:
         return self.monto
     
     def consumir(self, monto, fecha, idEstablecimiento, PIN):
-        if self.PIN == PIN:
-            self.debitos.append((monto, fecha, idEstablecimiento))
-            self.monto = self.monto - monto
+        if self.PIN != PIN:
+            raise Exception("PIN incorrecto")
+            
+        self.debitos.append((monto, fecha, idEstablecimiento))
+        self.monto = self.monto - monto
+       
+            
 
 if __name__ == '__main__':
     pass
