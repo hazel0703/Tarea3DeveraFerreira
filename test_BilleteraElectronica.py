@@ -88,9 +88,21 @@ class Test(unittest.TestCase):
         Fecha_consumir = datetime(2015, 5, 5, 6, 15)
         self.assertRaises(Exception, BE.consumir, -1, Fecha_consumir, "id")
         
-    #Caso para probar los caracteres especiales en el nombre y apellido
+    #Caso para probar los caracteres especiales en el nombre y apellido (TDD)
     def testCaracteresEspeciales(self):
         BE = BilleteraElectronica(5, "-áéíóúñ", "-áéíóúñ", 12345678, 4321)
+        
+    #Caso para monto de recarga 0 (frontera)
+    def test0Recarga(self):
+        BE = BilleteraElectronica(5 , "Antonio", "Perez", 12345678, 4321)
+        Fecha_recarga = datetime(2015, 5, 5, 6, 15)
+        self.assertRaises(Exception, BE.recargar, 0, Fecha_recarga, "id")
+        
+    #Caso para monto de consumo 0 (Frontera)
+    def test0Consumir(self):
+        BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        Fecha_consumir = datetime(2015, 5, 5, 6, 15)
+        self.assertRaises(Exception, BE.consumir, 0, Fecha_consumir, "id")
          
 
 if __name__ == "__main__":
