@@ -90,11 +90,11 @@ class Test(unittest.TestCase):
         
     #Caso para probar los caracteres especiales en el nombre y apellido (TDD)
     def testCaracteresEspeciales(self):
-        BE = BilleteraElectronica(5, "-áéíóúñ", "-áéíóúñ", 12345678, 4321)
+        BilleteraElectronica(5, "-áéíóúñ", "-áéíóúñ", 12345678, 4321)
         
     #Caso para monto de recarga 0 (frontera)
     def test0Recarga(self):
-        BE = BilleteraElectronica(5 , "Antonio", "Perez", 12345678, 4321)
+        BE = BilleteraElectronica(5, "Antonio", "Perez", 12345678, 4321)
         Fecha_recarga = datetime(2015, 5, 5, 6, 15)
         self.assertRaises(Exception, BE.recargar, 0, Fecha_recarga, "id")
         
@@ -103,8 +103,22 @@ class Test(unittest.TestCase):
         BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
         Fecha_consumir = datetime(2015, 5, 5, 6, 15)
         self.assertRaises(Exception, BE.consumir, 0, Fecha_consumir, "id")
-         
-
+        
+    #Caso para un entero empezando en 0 (Malicioso)
+    '''def testEnteroEmpezando0(self):
+        BilleteraElectronica(5,"Antonio", "Perez", 12345678, 0321)
+        
+        En python los enteros no pueden empezar en 0, dando un error detectado
+    a nivel de lexer'''
+    
+    #Caso que prueba la recarga minima con el saldo casi minimo (Esquina)
+    def testminRecargasaldo1(self):
+        BE = BilleteraElectronica(5,"Antonio", "Perez", 12345678, 4321)
+        Fecha_recarga = datetime(2015, 5, 5, 6, 15)
+        BE.recargar(1, Fecha_recarga, "id")
+        self.assertEqual(BE.saldo(), 1, "El saldo no es el correcto")
+    
+    
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
